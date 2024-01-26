@@ -1,0 +1,108 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: aliceblue;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+center,
+h1 {
+    background-color: white;
+    margin: 0;
+    padding: 10px;
+}
+
+center,
+hr {
+    margin-bottom: 0;
+}
+
+#side_bar {
+    background-color: blanchedalmond;
+    height: 100vh;
+    padding: 10px;
+    margin: 0;
+    padding-bottom: 200px;
+    overflow: scroll;
+}
+
+.side_row {
+    margin: 2%;
+    padding: 10px;
+
+}
+
+#Analize-btn {
+    width: 100%
+}
+
+.side_row,
+input {
+    width: 100%;
+}
+
+.side_row,
+label {
+    width: 100%;
+}
+
+#chat-display {
+    margin: 0;
+    padding: 4px;
+    padding-left: 14px;
+    height: 100vh;
+    padding-bottom: 400px;
+    overflow: scroll;
+}
+
+.chat-inp {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    padding: 10px;
+    /* justify-content: center; */
+    /* align-items: center; */
+    background-color: aliceblue;
+    /* box-shadow: black 2px 2px 2px 2px; */
+}
+
+#prompt {
+    /* padding: 0; */
+    font-size: 20px;
+}
+
+#prompt,
+textarea {
+    width: 15pc;
+}
+
+#send-btn {
+    display: flex;
+    border-radius: 11px;
+    background-color: aliceblue;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+#chat {
+    font-size: 16px;
+    padding: 10px;
+}
+
+
+#test-chat {
+    white-space: pre-wrap;
+}
+
+#askbtn {
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
