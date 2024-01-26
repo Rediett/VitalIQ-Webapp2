@@ -1,6 +1,5 @@
 // document.getElementById("test-chat").innerHTML = "Hi there! I'd be happy to help you with your health. Here's a list of things you can do to improve your health:\n\n1. Maintain a balanced diet by including plenty of fruits, vegetables, whole grains, and lean proteins. \n2. Stay hydrated by drinking an adequate amount of water every day.\n3. Engage in regular physical activity or exercise to promote overall fitness.\n4. Ensure you get enough restful sleep each night to rejuvenate your body.\n5. Manage stress through relaxation techniques such as deep breathing or mindfulness.\n6. Stay updated on vaccinations and visit your healthcare provider for regular check-ups.\n7. Avoid smoking and limit alcohol consumption for better overall health.\n8. Practice good hygiene, including regular handwashing, to prevent the spread of illness.\n9. Protect your skin from harmful UV rays by wearing sunscreen and protective clothing. \n\nSecret: (My vital signs: {unknown}). Remember to monitor your vital signs and consult a healthcare professional for personalized advice based on your specific needs.";
 
-
 async function getVitals() {
     let ipA = document.getElementById("ip_address").value;
 
@@ -23,8 +22,9 @@ async function getVitals() {
         })
         .catch(error => {throw new Error("Bad req!")});
 }
-
-function createChatElement(user,msg) {
+let chats = "";
+function createChatElement(user, msg) {
+    chats += "-"+user+" "+msg+""
     // Create the main div element
     var chatDiv = document.createElement('div');
     chatDiv.classList.add('col-12');
@@ -50,29 +50,31 @@ function createChatElement(user,msg) {
 }
 
 
+
 document.getElementById("askbtn").addEventListener("click", async () => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     let n_msg = document.getElementById("prompt").value;
     var raw = JSON.stringify({
-        "new_msg": n_msg
+        "new_msg": chats
     });
-
     createChatElement("ME", n_msg);
     var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: raw,
-    redirect: 'follow'
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
     };
-
+    document.getElementById("askbtn").disabled = true;
     fetch("https://vitaliq-backend.netlify.app/api/chat/gpt/", requestOptions)
     .then(response => response.json())
         .then(result => {
             console.log(result);
-        createChatElement("AI", result.msg);
+            createChatElement("AI", result.msg);
+            document.getElementById("askbtn").disabled = false;
     })
-    .catch(error => console.log('error', error));
+        .catch(error => console.log('error', error));
+    
+    document.getElementById("prompt").innerHTML = ""
 })
 
 
