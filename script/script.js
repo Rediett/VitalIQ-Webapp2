@@ -22,8 +22,8 @@
 //         .catch(error => {throw new Error("Bad req!")});
 // }
 let chats = "";
-function createChatElement(user, msg) {
-    chats += "- "+msg+"   \n"
+function createChatElement(user, msg,notu) {
+    // chats = "-" + user + " " + msg;
     // Create the main div element
     var chatDiv = document.createElement('div');
     chatDiv.classList.add('col-12');
@@ -56,7 +56,7 @@ document.getElementById("askbtn").addEventListener("click", async () => {
 
     let n_msg = document.getElementById("prompt").value;
     var raw = JSON.stringify({
-        "new_msg": chats
+        "new_msg": n_msg
     });
     createChatElement("ME", n_msg);
     var requestOptions = {
@@ -69,7 +69,7 @@ document.getElementById("askbtn").addEventListener("click", async () => {
     .then(response => response.json())
         .then(result => {
             console.log(result);
-            createChatElement("AI", result.msg);
+            createChatElement("Vi", result.msg);
             document.getElementById("askbtn").disabled = false;
     })
         .catch(error => console.log('error', error));
