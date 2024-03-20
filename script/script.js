@@ -23,7 +23,7 @@
 // }
 let chats = "";
 function createChatElement(user, msg) {
-    chats += "-"+user+" "+msg+""
+    chats += "- "+msg+"   \n"
     // Create the main div element
     var chatDiv = document.createElement('div');
     chatDiv.classList.add('col-12');
@@ -53,7 +53,7 @@ function createChatElement(user, msg) {
 document.getElementById("askbtn").addEventListener("click", async () => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    
+
     let n_msg = document.getElementById("prompt").value;
     var raw = JSON.stringify({
         "new_msg": chats
